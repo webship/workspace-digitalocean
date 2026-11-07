@@ -1,0 +1,5 @@
+# DigitalOcean — core/config/plugin.digitalocean.settings.yml
+#
+# The doctl CLI inside the dashboard container. A personal access token from cloud.digitalocean.com → API → Tokens (read scope for the lists, write for deploys); injected only into DigitalOcean jobs, never printed.
+# A personal access token from cloud.digitalocean.com → API. Read by doctl as DIGITALOCEAN_ACCESS_TOKEN.
+access_token: CHANGE_ME

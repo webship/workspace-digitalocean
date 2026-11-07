@@ -1,0 +1,83 @@
+{
+  "name": "@webship/workspace-digitalocean",
+  "version": "1.0.0",
+  "description": "DigitalOcean App Platform for Webship Workspace: the DIGITALOCEAN menu on every site row, the app's live URL and deployments, deploy, logs, a managed database pulled into DDEV. A provider of @webship/workspace-hosting.",
+  "main": "dist/src/index.js",
+  "types": "dist/src/index.d.ts",
+  "private": true,
+  "license": "ISC",
+  "repository": "github:webship/workspace-digitalocean",
+  "files": [
+    "dist/src",
+    "commands",
+    "config",
+    "features",
+    "scripts",
+    "README.md",
+    "ddev",
+    "host-mounts.txt"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "prepare": "npm run build",
+    "test": "npm run build && node --test dist/tests/*.test.js",
+    "lint": "tsc -p tsconfig.json --noEmit"
+  },
+  "workspacePlugin": {
+    "name": "digitalocean",
+    "label": "DigitalOcean",
+    "settingsFile": "plugin.digitalocean.settings.yml",
+    "settingsTemplate": "config/plugin.digitalocean.settings.yml",
+    "labels": "config/settings.labels.yml",
+    "legacySettingsKey": "digitalocean",
+    "typeActions": {
+      "digitalocean": [
+        "sites"
+      ]
+    },
+    "commands": {
+      "types": [
+        "sites"
+      ],
+      "workspaces": [
+        "dev",
+        "test",
+        "demos",
+        "sandboxes",
+        "projects"
+      ],
+      "files": [
+        "commands/cmd-tools-digitalocean.sh"
+      ]
+    },
+    "scripts": {
+      "functions": [
+        "scripts/functions/fun-digitalocean.sh",
+        "scripts/functions/fun-digitalocean-tool.sh"
+      ],
+      "args": [
+        "scripts/args/arg-digitalocean.sh"
+      ],
+      "hostInstall": "scripts/host-install.sh"
+    },
+    "features": [
+      "features/digitalocean.feature"
+    ],
+    "ddev": {
+      "compose": [
+        "ddev/docker-compose.digitalocean-cli.yaml"
+      ],
+      "hostMounts": [
+        "~/.config/doctl"
+      ]
+    }
+  },
+  "dependencies": {
+    "@webship/workspace-hosting": "github:webship/workspace-hosting#1.0.x"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "@webship/workspace-plugin-api": "github:webship/workspace-plugin-api#1.0.x",
+    "typescript": "^5.9.0"
+  }
+}

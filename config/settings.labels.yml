@@ -1,0 +1,4 @@
+# Labels for core/config/plugin.digitalocean.settings.yml, merged into the Settings page.
+access_token:
+  label: DigitalOcean access token
+  info: 'A personal access token from cloud.digitalocean.com → API. Read by doctl as DIGITALOCEAN_ACCESS_TOKEN.'
