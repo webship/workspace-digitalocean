@@ -7,9 +7,9 @@
  * and the database pull go through cmd-tools-digitalocean.sh in a screen session.
  */
 
-import type { PluginApi, PluginLib } from '@webship/workspace-plugin-api';
-import { configured, findCli } from '@webship/workspace-hosting';
-import type { EnvInfo, HostingLink, HostingProvider } from '@webship/workspace-hosting';
+import type { PluginApi, PluginLib } from '@webship.co/workspace-plugin-api';
+import { configured, findCli } from '@webship.co/workspace-hosting';
+import type { EnvInfo, HostingLink, HostingProvider } from '@webship.co/workspace-hosting';
 
 import { digitaloceanLinkOf } from './link';
 

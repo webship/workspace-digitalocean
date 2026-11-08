@@ -1,9 +1,9 @@
-# @webship/workspace-digitalocean
+# @webship.co/workspace-digitalocean
 
 DigitalOcean for the [Webship Workspace](https://github.com/webship/workspace) dashboard: the **DIGITALOCEAN**
 menu on every site row, a live-site chip on the project card, "Link to DigitalOcean" when a new folder is
 made, and the `cmd-tools-digitalocean.sh` command in every site workspace. A provider of
-[`@webship/workspace-hosting`](https://github.com/webship/workspace-hosting), which draws the menu,
+[`@webship.co/workspace-hosting`](https://github.com/webship/workspace-hosting), which draws the menu,
 the environments modal, the get-database-and-files flow and the New-folder section for every host.
 
 An App Platform app has one environment (production) with one live URL, so the environments list is the app itself and its deployments. A deploy triggers a new deployment from the app's source; the logs are `doctl apps logs`; the database comes from a managed cluster you name once with `--database <cluster-id>` (`doctl databases connection` gives the details, `mysqldump`/`pg_dump` do the dump — your machine's IP must be in the cluster's trusted sources). There is no files mount: App Platform apps keep their files in Spaces, which is an S3 bucket, not something this plugin syncs.
