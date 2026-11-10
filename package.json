@@ -1,6 +1,6 @@
 {
   "name": "@webship.co/workspace-digitalocean",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "DigitalOcean App Platform for Webship Workspace: the DIGITALOCEAN menu on every site row, the app's live URL and deployments, deploy, logs, a managed database pulled into DDEV. A provider of @webship.co/workspace-hosting.",
   "main": "dist/src/index.js",
   "types": "dist/src/index.d.ts",
@@ -75,11 +75,11 @@
     }
   },
   "dependencies": {
-    "@webship.co/workspace-hosting": "^1.0.0"
+    "@webship.co/workspace-hosting": "^1.0.2"
   },
   "devDependencies": {
     "@types/node": "^24.0.0",
-    "@webship.co/workspace-plugin-api": "^1.0.0",
+    "@webship.co/workspace-plugin-api": "^1.0.2",
     "typescript": "^5.9.0"
   },
   "publishConfig": {
