@@ -20,6 +20,22 @@ bash core/scripts/plugins.sh --configure digitalocean      # core/config/plugin.
 
 The same four steps are buttons on the dashboard's **Settings → Plugins** page.
 
+## What it needs
+
+A workspace starts empty, so the manifest says what else this plugin needs (`needs`):
+
+- one sites folder: `dev`, `test`, `demos`, `sandboxes`, `projects` (`dev` is the one added when none is there). `cmd-tools-digitalocean.sh`, which the menu's verbs run, is placed in it, and the menu is on its project rows.
+- on the machine: `doctl`, the provider's CLI (https://docs.digitalocean.com/reference/doctl/how-to/install/). A part of it also uses `mysqldump`, `pg_dump`.
+
+`--require` says so, `--activate` and `--install` stop until the workspace has a sites folder, and `--with-needs` adds it first. A missing command is said and never added:
+
+```bash
+bash core/scripts/plugins.sh --activate digitalocean --with-needs
+bash core/scripts/plugins.sh --check digitalocean      # each command: found, with its version, or missing, with how to install it
+```
+
+A workspace that knows none of this (Webship Workspace 1.0.8 and older) ignores the keys: add a sites folder yourself, then `--install digitalocean` again.
+
 ## The command
 
 ```bash
