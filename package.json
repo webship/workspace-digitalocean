@@ -28,6 +28,29 @@
   "workspacePlugin": {
     "name": "digitalocean",
     "label": "DigitalOcean",
+    "needs": {
+      "plugins": [
+        [
+          "dev",
+          "test",
+          "demos",
+          "sandboxes",
+          "projects"
+        ]
+      ],
+      "commands": [
+        {
+          "command": "doctl",
+          "hint": "https://docs.digitalocean.com/reference/doctl/how-to/install/"
+        }
+      ]
+    },
+    "suggests": {
+      "commands": [
+        "mysqldump",
+        "pg_dump"
+      ]
+    },
     "settingsFile": "plugin.digitalocean.settings.yml",
     "settingsTemplate": "config/plugin.digitalocean.settings.yml",
     "labels": "config/settings.labels.yml",
