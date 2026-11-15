@@ -18,6 +18,12 @@ import { digitaloceanProvider } from './lib/provider';
 export { digitaloceanProvider };
 export { digitaloceanLinkOf } from './lib/link';
 
+/** The AI items the installer places: agents in ai-agents/, skills in ai-skills/, commands in ai-commands/, prompts in ai-prompts/. */
+export const AGENTS: string[] = ['digitalocean-deployer'];
+export const SKILLS: string[] = ['digitalocean-hosting'];
+export const AI_COMMANDS: string[] = ['digitalocean-status'];
+export const PROMPTS: string[] = ['digitalocean-test-then-deploy'];
+
 export function register(api: PluginApi): void {
   registerHosting(api, digitaloceanProvider(api));
 }
