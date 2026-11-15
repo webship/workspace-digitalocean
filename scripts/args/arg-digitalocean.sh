@@ -8,14 +8,14 @@ parser.add_argument('-l', '--link',
                     help='Link the project to an App Platform app by its id. Find ids with: doctl apps list')
 parser.add_argument('-d', '--database',
                     default="_none_",
-                    help='Remember the managed database cluster id --pull-db dumps from (doctl databases list). The app's own spec rarely says it.')
+                    help='Remember the managed database cluster id --pull-db dumps from (doctl databases list). The app\'s own spec rarely says it.')
 parser.add_argument('-p', '--push',
                     action='store_true',
                     default=False,
                     help='Deploy: trigger a new deployment of the app from its source (doctl apps create-deployment --wait).')
 parser.add_argument('-e', '--environment',
                     default="_none_",
-                    help='Environment for THIS run. An App Platform app has one: production. Kept for the family's shape.')
+                    help='Environment for THIS run. An App Platform app has one: production. Kept for the family\'s shape.')
 parser.add_argument('-E', '--environments',
                     action='store_true',
                     default=False,
