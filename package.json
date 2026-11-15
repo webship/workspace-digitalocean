@@ -1,7 +1,7 @@
 {
   "name": "@webship.co/workspace-digitalocean",
   "version": "1.0.8",
-  "description": "DigitalOcean App Platform for Webship Workspace: the DIGITALOCEAN menu on every site row, the app's live URL and deployments, deploy, logs, a managed database pulled into DDEV. A provider of @webship.co/workspace-hosting.",
+  "description": "DigitalOcean App Platform for Webship Workspace: the DIGITALOCEAN menu on every site row, the app's live URL and deployments, deploy, logs, a managed database pulled into DDEV. It carries its AI items, each placed in the workspace folder of its kind: an agent, a skill, a command and a prompt. A provider of @webship.co/workspace-hosting.",
   "main": "dist/src/index.js",
   "types": "dist/src/index.d.ts",
   "license": "ISC",
@@ -11,13 +11,15 @@
   },
   "files": [
     "dist/src",
+    "ai",
     "commands",
     "config",
     "features",
     "scripts",
     "README.md",
     "ddev",
-    "host-mounts.txt"
+    "host-mounts.txt",
+    "docs"
   ],
   "scripts": {
     "build": "tsc -p tsconfig.json",
@@ -36,7 +38,11 @@
           "demos",
           "sandboxes",
           "projects"
-        ]
+        ],
+        "ai-agents",
+        "ai-skills",
+        "ai-commands",
+        "ai-prompts"
       ],
       "commands": [
         {
@@ -84,6 +90,20 @@
         "scripts/args/arg-digitalocean.sh"
       ],
       "hostInstall": "scripts/host-install.sh"
+    },
+    "ai": {
+      "agents": [
+        "ai/agents/digitalocean-deployer.md"
+      ],
+      "skills": [
+        "ai/skills/digitalocean-hosting"
+      ],
+      "commands": [
+        "ai/commands/digitalocean-status.md"
+      ],
+      "prompts": [
+        "ai/prompts/digitalocean-test-then-deploy.md"
+      ]
     },
     "features": [
       "features/digitalocean.feature"
