@@ -39,7 +39,7 @@ function digitalocean_do_environments() {
 for a in json.load(sys.stdin):
     s=a.get("spec",{}); d=a.get("active_deployment",{}) or {}
     print("  %-12s %-28s %-10s %s" % ("production", (s.get("name") or "")[:28], (d.get("phase") or "").lower(), a.get("live_url") or a.get("default_ingress") or ""))
-    print("  region: %s   updated: %s" % (s.get("region",""), (a.get("updated_at") or "")[:19]))' \
+    print("  region: %s   updated: %s" % (s.get("region",""), (a.get("updated_at") or "")[:19]))' 2>/dev/null \
     || { echo "  (could not read the app — check doctl account get)"; return 1; } ;
 }
 
@@ -105,21 +105,29 @@ function digitalocean_do_logs() {
 function digitalocean_do_activities() {
   doctl apps list-deployments "$2" -o json 2>/dev/null | python3 -c 'import json,sys
 for d in json.load(sys.stdin)[:10]:
-    print("  %-20s %-12s %s" % ((d.get("created_at") or "")[:19], (d.get("phase") or "").lower(), d.get("cause","")))' \
+    print("  %-20s %-12s %s" % ((d.get("created_at") or "")[:19], (d.get("phase") or "").lower(), d.get("cause","")))' 2>/dev/null \
     || echo "  (could not list the deployments)" ;
 }
 
 function digitalocean_status() {
-  local project_path="$1" app="$2";
+  local project_path="$1" app="$2" missing rc=0;
   if [ -z "${app}" ] ; then
     echo "    (find the app id with: doctl apps list)";
     return 0 ;
   fi
   echo "";
-  digitalocean_do_environments "${project_path}" "${app}" ;
+  # Without doctl or its token nothing below can answer: say once what is missing, in
+  # ensure_digitalocean's words, and fail. The link, the database and the console still show.
+  if missing="$(ensure_digitalocean)" ; then
+    digitalocean_do_environments "${project_path}" "${app}" || rc=1 ;
+  else
+    [ -n "${missing}" ] && sed 's/^/  /' <<< "${missing}" ;
+    rc=1 ;
+  fi
   local cluster; cluster="$(digitalocean_link_get "${project_path}" database)";
   echo "    database: ${cluster:-none linked — --link ${app} --database <cluster-id> --force}";
   echo "";
   echo "  Console: https://cloud.digitalocean.com/apps/${app}";
   echo "  Data: --pull-db brings the managed database down into DDEV; --push triggers a deployment.";
+  return ${rc} ;
 }
