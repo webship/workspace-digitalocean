@@ -30,8 +30,11 @@ bash cmd-tools-digitalocean.sh <project>          # linked or not, and to what
 - "not linked": say so, with the line it prints. Linking is done once, by the person or when they
   give you the id: `bash cmd-tools-digitalocean.sh <project> --link <app-id>`. Find ids with `doctl apps list`.
 - A command that is missing on the machine: stop and say which, with where to get it.
-- The credential is access_token in core/config/plugin.digitalocean.settings.yml. Never read it, print it or copy it. When the provider
-  refuses it, say that this is where it is set.
+- Two credentials, for two places. The command, run in a terminal on the machine, uses the `doctl` login
+  of the machine: `doctl auth init` (or DIGITALOCEAN_ACCESS_TOKEN in its environment). access_token in core/config/plugin.digitalocean.settings.yml
+  is the dashboard's: its app lists and its Get database. When the command says `doctl` is not signed in, give the person
+  `doctl auth init` to run themselves; when the dashboard says its credential is refused, say that the settings
+  file is where it is set. Never read, print or copy either.
 
 ## Read
 
